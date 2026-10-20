@@ -1,0 +1,67 @@
+### Rol
+Actúa como un Desarrollador Web Senior Full Stack experto en JavaScript Vanilla, HTML5 y CSS3, enfocado en código limpio, accesible y responsive.
+
+### Contexto
+Estoy desarrollando "Diario de Estudio", una aplicación web sencilla pensada para ayudar a estudiantes a mantener la motivación personal mediante el registro de sus sesiones diarias y la visualización de su racha de días consecutivos de estudio.
+
+### Tarea
+Crea la primera versión funcional de la aplicación web. Debe incluir:
+1. Formulario para registrar sesiones con: fecha (por defecto hoy), tema estudiado y minutos (validando que sea un número mayor a 0).
+2. Panel que muestre la racha actual de días consecutivos estudiados y el total de minutos acumulados.
+3. Lista histórica con las sesiones registradas, ordenadas de la más reciente a la más antigua.
+4. Persistencia de datos en el navegador mediante `localStorage`.
+
+### Restricciones
+- Utiliza únicamente HTML, CSS y JavaScript puro (Vanilla JS). Sin librerías externas ni frameworks (sin React, Tailwind, Bootstrap, etc.).
+- Todo debe estar organizado en máximo 3 archivos: `index.html`, `styles.css` y `script.js`.
+- La web debe funcionar directamente al abrir `index.html` con un doble clic en el navegador (sin servidor local ni dependencias de npm).
+- MANEJO DE FECHAS: Prohibido usar `.toISOString()` o `new Date("AAAA-MM-DD")` directamente para cálculos de días, ya que causan desfases por zona horaria UTC. Usa únicamente componentes locales de la fecha (`getFullYear()`, `getMonth()`, `getDate()`).
+
+### Formato de salida
+Proporciona el código completo y listo para usar de los 3 archivos. Antes del código, incluye un breve resumen explicativo del diseño y una lista con las decisiones técnicas que hayas tomado de forma autónoma.
+
+
+# AGENTS.md - Diario de Estudio
+
+## 1. Visión general
+Aplicación web ligera para registrar sesiones de estudio diarias y calcular rachas consecutivas.
+
+## 2. Stack y Estructura
+- HTML5 semántico, CSS3 nativo (variables CSS, Flexbox/Grid) y JavaScript Vanilla (ES6+).
+- Estructura fija de 3 archivos: `index.html`, `styles.css`, `script.js`.
+- Ejecución directa abriendo `index.html` en el navegador (sin Node.js ni servidor).
+
+## 3. Convenciones
+- JavaScript: camelCase para funciones/variables, funciones puras para cálculos.
+- CSS: Mobile-first, diseño limpio y responsive sin frameworks.
+- Idioma de la interfaz y comentarios: Español.
+
+## 4. Persistencia de datos
+- Clave de `localStorage`: `diario_estudio_sesiones`.
+- Formato del registro: `{ id: string, fecha: "YYYY-MM-DD", tema: string, minutos: number }`.
+- Validaciones: `minutos > 0`, `tema` no vacío.
+
+## 5. Fechas y Racha
+- PROHIBIDO el uso de `.toISOString()` y sintaxis UTC de `Date` para comparar días.
+- Formatear e interpretar fechas siempre en hora local (`getFullYear()`, `getMonth() + 1`, `getDate()`).
+- Racha: Conteo de días consecutivos con al menos una sesión desde hoy/ayer hacia atrás.
+
+## 6. Límites
+- **Siempre:** Mantener la arquitectura de 3 archivos y validar entradas en el cliente.
+- **Pregunta antes de:** Modificar el esquema del objeto de datos en `localStorage`.
+- **Nunca:** Agregar librerías externas, CDNs, dependencias npm o backend/APIs.
+
+## 7. Verificación
+- Probar abriendo `index.html` en el navegador.
+- Confirmar persistencia al recargar la página tras agregar una sesión.
+
+Quiero agregar una nueva funcionalidad al Diario de Estudio: un panel de resumen que muestre los minutos estudiados en cada una de las últimas 4 semanas (calculadas de lunes a domingo), ubicado justo debajo de la racha actual.
+
+Antes de escribir cualquier línea de código, prepárame un plan detallado que incluya:
+
+1. **Lógica de agrupamiento:** Explicación paso a paso de cómo agruparás las sesiones por semana usando componentes de fecha local sin violar la regla de fechas de AGENTS.md.
+2. **Archivos a modificar:** Lista exacta de archivos (`index.html`, `styles.css`, `script.js`) y qué cambios o funciones específicas añadirás a cada uno.
+3. **Casos límite:** Cómo manejarás semanas sin sesiones registradas, la semana actual en curso y posibles registros con fechas futuras.
+4. **Preguntas/Decisiones:** Dudas sobre el diseño o el comportamiento que deba confirmar antes de proceder (por ejemplo, si la semana debe iniciar en lunes o domingo).
+5. **Documentación:** Qué actualizaciones realizarás en `AGENTS.md` y `MEMORY.md` tras completar la tarea.
+
